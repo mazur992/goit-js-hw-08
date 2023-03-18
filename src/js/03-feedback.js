@@ -16,7 +16,8 @@ formEl.addEventListener(
 
 formEl.addEventListener('submit', event => {
   event.preventDefault();
-  console.log(formData);
+  if (formEl.email.value !== '' && formEl.message.value != '')
+    console.log(formData);
   localStorage.removeItem(STORAGE_VALUE);
   formEl.reset();
 });
