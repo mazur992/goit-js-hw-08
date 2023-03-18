@@ -7,12 +7,13 @@ let formData = {};
 
 formEl.addEventListener(
   'input',
-  throttle(event => {
-    formData[event.target.name] = event.target.value;
-
-    localStorage.setItem(STORAGE_VALUE, JSON.stringify(formData));
-  }, 500)
+  throttle(event => handleAddSubmitLocalStorage(event), 500)
 );
+function handleAddSubmitLocalStorage(event) {
+  formData[event.target.name] = event.target.value;
+
+  localStorage.setItem(STORAGE_VALUE, JSON.stringify(formData));
+}
 
 formEl.addEventListener('submit', event => {
   event.preventDefault();
@@ -20,6 +21,7 @@ formEl.addEventListener('submit', event => {
     console.log(formData);
   localStorage.removeItem(STORAGE_VALUE);
   formEl.reset();
+  formEl.removeEventListener('input', handleAddSubmitLocalStorage);
 });
 
 function verifyLocalStorage() {
