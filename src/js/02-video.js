@@ -24,7 +24,7 @@ function timeUpdateDate(data) {
 player.off('timeupdate', timeUpdateDate);
 
 try {
-  const currentTime = localStorage.getItem('videoplayer-current-time');
+  const currentTime = localStorage.getItem('videoplayer-current-time') || 0;
   player.setCurrentTime(JSON.parse(currentTime));
 } catch (error) {
   console.log(error.name);
